@@ -2,3 +2,4 @@
 code snippet
 
 - captcha
+- idcard
