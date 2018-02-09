@@ -45,4 +45,4 @@ img = qrcode.make('https://github.com/istommao/CodeSnippet')
 img.show()
 ```
 
-> [more](https://github.com/lincolnloop/python-qrcode)
+> [more about qrcode](https://github.com/lincolnloop/python-qrcode)
