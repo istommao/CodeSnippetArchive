@@ -129,10 +129,7 @@ SIMDITOR_UPLOAD_PATH = 'uploads/'
 SIMDITOR_IMAGE_BACKEND = 'pillow'
 
 SIMDITOR_TOOLBAR = [
-    'title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale',
-    'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link',
-    'image', 'hr', '|', 'indent', 'outdent', 'alignment', 'fullscreen',
-    'markdown', 'emoji'
+    'code', 'image', 'hr', '|', 'indent', 'fullscreen', 'markdown'
 ]
 
 SIMDITOR_CONFIGS = {

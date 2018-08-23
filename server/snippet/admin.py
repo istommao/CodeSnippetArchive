@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+
+from django.contrib import admin
+
+from snippet.models import Snippet
+
+
+@admin.register(Snippet)
+class SnippetAdmin(admin.ModelAdmin):
+    """SnippetAdmin."""

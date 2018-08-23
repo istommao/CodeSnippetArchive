@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeSnippet</title>
+    <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
+    <style>
+    .simditor {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+width: 800px;
+    }
+    .simditor-body {
+        width: 800px;
+    }
+    </style>
+</head>
+<body>
+
+<div style="width: 800px;margin:50px auto;">
+    <div style="width: 800px;font-size:16px">
+        {{ snippet.content|safe }}
+    </div>
+
+</div>
+    <script src="https://codingcat.top/static/js/prism.js"></script>
+</body>
+</html>

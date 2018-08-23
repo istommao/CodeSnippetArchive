@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <title>CodeSnippet</title>
     <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
+    <style>
+    .simditor {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+width: 800px;
+    }
+    .simditor-body {
+        width: 800px;
+    }
+    </style>
 </head>
 <body>
 
-<div style="width: 800px;margin:100px auto;">
+<div style="width: 800px;margin:50px auto;">
 <div style="width: 800px;font-size:16px">
 
 <pre><code class="lang-bash"># gcc make
@@ -34,12 +43,14 @@ yum install tk-devel
     </div>
 
 
-    <form method="post" action="./">
+    <div style="width:800px">
+    <form method="post" style="width:800px" action="./">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}
         <p><input type="submit" value="post"></p>
     </form>
+    </div>
 </div>
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>
