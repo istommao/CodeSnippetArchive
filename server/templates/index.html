@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>CodeSnippet</title>
     <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
 </head>
 <body>
@@ -32,6 +32,14 @@ yum install openssl-devel
 yum install tk-devel
 </code></pre>
     </div>
+
+
+    <form method="post" action="./">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <p><input type="submit" value="post"></p>
+    </form>
 </div>
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>

@@ -16,14 +16,35 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls import include
+from django.conf.urls.static import static
+
 from django.shortcuts import render
+
+from django import forms
+from simditor.fields import RichTextFormField
+from simditor.views import UPLOAD
+
+
+class SimditorForm(forms.Form):
+    content = RichTextFormField()
 
 
 def IndexView(request):
-    return render(request, 'index.html')
+
+    context = {'form': SimditorForm()}
+    return render(request, 'index.html', context)
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', IndexView)
+    path('admin', admin.site.urls),
+    path('', IndexView),
+    path('simditor/upload/', UPLOAD)   # add this line
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

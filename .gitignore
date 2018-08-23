@@ -103,3 +103,6 @@ ENV/
 .DS_Store
 db.sqlite3
 local_settings.py
+
+server/static
+server/media
