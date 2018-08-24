@@ -28,8 +28,7 @@ from snippet.views import SnippetListView
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('', SnippetListView.as_view()),
-    path('snippet/', SnippetListView.as_view()),
+    path('', SnippetListView.as_view())
 ]
 
 if settings.DEBUG:

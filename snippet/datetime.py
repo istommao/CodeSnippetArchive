@@ -3,8 +3,6 @@ import datetime
 
 
 # 日期格式化
-
-
 now = datetime.datetime.now()
 now.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -28,15 +26,14 @@ def get_end_of_today():
 
 
 # 获取上个月
-
-
 def get_last_month_range():
     end = datetime.date.today().replace(day=1) - datetime.timedelta(1)
     start = end.replace(day=1)
     return datetime.datetime.combine(start, datetime.time.min), datetime.datetime.combine(end, datetime.time.max)
 
-
 # 获取第n个月
+
+
 def get_month_range(n):
     today = datetime.date.today()
     year_diff = (today.month + n) // 12

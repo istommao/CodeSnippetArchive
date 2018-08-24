@@ -16,3 +16,6 @@ class Snippet(models.Model):
     class Meta:
         verbose_name = 'Snippet'
         verbose_name_plural = 'Snippet'
+
+    def __str__(self):
+        return self.title
