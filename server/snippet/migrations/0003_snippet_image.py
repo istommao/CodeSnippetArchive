@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='snippet',
             name='image',
-            field=models.ImageField(default='snippet/default.png', upload_to=snippet.modelutils.PathAndRename('snippet/'), verbose_name='图片'),
+            field=models.ImageField(default='snippet/default.jpg', upload_to=snippet.modelutils.PathAndRename('snippet/'), verbose_name='图片'),
         ),
     ]
