@@ -5,16 +5,14 @@
     <title>CodeSnippet</title>
     <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
     <style>
-    .simditor {
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-        width: 800px;
-    }
-    .simditor-body {
-        width: 800px;
+    .mainContent {
+        width: 980px;
+        margin: 20px auto;
     }
     .cardItem {
-        width: 370px;
+        width: 100%;
         font-size:16px;
+        overflow: hidden;
         background: white;
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
         border-radius: 0.3em;
@@ -32,51 +30,21 @@
     }
     .cardItem pre {
         height: auto;
-        font-size: 12px;
-        overflow: hidden;
+        font-size: 14px;
     }
     </style>
 </head>
 <body>
-
-<div style="width: 800px;margin:50px auto;">
-<div class="cardItem">
-<div class="cardTitle">Python源码安装</div>
-<div class="cardContent">
-<pre><code class="lang-bash"># gcc make
-yum install gcc make
-
-# zlib
-yum install zlib-devel
-
-# 3.7版本需要一个新的包libffi-devel
-yum install libffi-devel
-
-# sqlite安装
-yum install sqlite-devel
-
-# readline安装
-yum install readline-devel
-
-# openssl安装
-yum install openssl-devel
-
-# tk安装
-yum install tk-devel
-</code></pre>
-</div>
-</div>
-<!--
-    <div style="width:800px">
-    <form method="post" style="width:800px" action="./">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <p><input type="submit" value="post"></p>
-    </form>
+    <div class="mainContent">
+        {% for snippet in snippets %}
+        <div class="cardItem">
+            <div class="cardTitle">{{ snippet.title }}</div>
+            <div class="cardContent">
+                {{ snippet.content|safe }}
+            </div>
+        </div>
+        {% endfor %}
     </div>
-</div>
--->
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>
 </html>

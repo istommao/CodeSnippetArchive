@@ -5,15 +5,15 @@
     <title>CodeSnippet</title>
     <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
     <style>
-    .simditor {
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-        width: 800px;
-    }
-    .simditor-body {
-        width: 800px;
+    .mainContent {
+        width: 980px;
+        margin: 20px auto;
     }
     .cardItem {
+        width: 100%;
+        margin-top: 15px;
         font-size:16px;
+        overflow: hidden;
         background: white;
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
         border-radius: 0.3em;
@@ -31,20 +31,21 @@
     }
     .cardItem pre {
         height: auto;
-        font-size: 12px;
+        font-size: 14px;
     }
     </style>
 </head>
 <body>
-
-<div style="width: 800px;margin:50px auto;">
-    <div class="cardItem">
-        <div class="cardTitle">Python源码安装</div>
-        <div class="cardContent">
-            {{ snippet.content|safe }}
+    <div class="mainContent">
+        {% for snippet in snippets %}
+        <div class="cardItem">
+            <div class="cardTitle">{{ snippet.title }}</div>
+            <div class="cardContent">
+                {{ snippet.content|safe }}
+            </div>
         </div>
+        {% endfor %}
     </div>
-</div>
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>
 </html>

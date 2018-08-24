@@ -8,5 +8,5 @@ class SnippetListView(View):
 
     def get(self, request, *args, **kwargs):
 
-        snippet = Snippet.objects.order_by('-create_time').first()
-        return render(request, 'snippet.html', {'snippet': snippet})
+        snippets = Snippet.objects.order_by('-create_time')
+        return render(request, 'snippet.html', {'snippets': snippets})

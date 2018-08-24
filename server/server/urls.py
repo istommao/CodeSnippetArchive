@@ -22,29 +22,14 @@ from django.conf.urls.static import static
 
 from django.shortcuts import render
 
-from django import forms
-
-from simditor.fields import RichTextFormField
-from simditor.views import UPLOAD
 
 from snippet.views import SnippetListView
 
 
-class SimditorForm(forms.Form):
-    content = RichTextFormField()
-
-
-def IndexView(request):
-
-    context = {'form': SimditorForm()}
-    return render(request, 'index.html', context)
-
-
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('', IndexView),
+    path('', SnippetListView.as_view()),
     path('snippet/', SnippetListView.as_view()),
-    path('simditor/upload/', UPLOAD)   # add this line
 ]
 
 if settings.DEBUG:
