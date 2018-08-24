@@ -7,20 +7,43 @@
     <style>
     .simditor {
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-width: 800px;
+        width: 800px;
     }
     .simditor-body {
         width: 800px;
+    }
+    .cardItem {
+        font-size:16px;
+        background: white;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        border-radius: 0.3em;
+    }
+    .cardTitle {
+        border-bottom: 2px solid #F7F7F7;
+        text-indent: 20px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .cardContent {
+        padding: 10px 15px;
+    }
+    .cardItem pre {
+        height: auto;
+        font-size: 12px;
     }
     </style>
 </head>
 <body>
 
 <div style="width: 800px;margin:50px auto;">
-    <div style="width: 800px;font-size:16px">
-        {{ snippet.content|safe }}
+    <div class="cardItem">
+        <div class="cardTitle">Python源码安装</div>
+        <div class="cardContent">
+            {{ snippet.content|safe }}
+        </div>
     </div>
-
 </div>
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>

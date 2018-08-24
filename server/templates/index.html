@@ -7,18 +7,42 @@
     <style>
     .simditor {
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-width: 800px;
+        width: 800px;
     }
     .simditor-body {
         width: 800px;
+    }
+    .cardItem {
+        width: 370px;
+        font-size:16px;
+        background: white;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        border-radius: 0.3em;
+    }
+    .cardTitle {
+        border-bottom: 2px solid #F7F7F7;
+        text-indent: 20px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .cardContent {
+        padding: 10px 15px;
+    }
+    .cardItem pre {
+        height: auto;
+        font-size: 12px;
+        overflow: hidden;
     }
     </style>
 </head>
 <body>
 
 <div style="width: 800px;margin:50px auto;">
-<div style="width: 800px;font-size:16px">
-
+<div class="cardItem">
+<div class="cardTitle">Python源码安装</div>
+<div class="cardContent">
 <pre><code class="lang-bash"># gcc make
 yum install gcc make
 
@@ -40,9 +64,9 @@ yum install openssl-devel
 # tk安装
 yum install tk-devel
 </code></pre>
-    </div>
-
-
+</div>
+</div>
+<!--
     <div style="width:800px">
     <form method="post" style="width:800px" action="./">
         {% csrf_token %}
@@ -52,6 +76,7 @@ yum install tk-devel
     </form>
     </div>
 </div>
+-->
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>
 </html>
