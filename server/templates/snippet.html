@@ -37,14 +37,12 @@
 </head>
 <body>
     <div class="mainContent">
-        {% for snippet in snippets %}
         <div class="cardItem">
             <div class="cardTitle">{{ snippet.title }}</div>
             <div class="cardContent">
                 {{ snippet.content|safe }}
             </div>
         </div>
-        {% endfor %}
     </div>
     <script src="https://codingcat.top/static/js/prism.js"></script>
 </body>

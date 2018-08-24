@@ -1,6 +1,10 @@
 """snippet models"""
 from django.db import models
 
+from snippet import consts
+from snippet.modelutils import PathAndRename
+
+
 from simditor.fields import RichTextField
 
 
@@ -8,7 +12,13 @@ class Snippet(models.Model):
     """Snippet."""
 
     title = models.CharField('标题', max_length=32)
+    intro = models.CharField('简介', max_length=256, default='')
     content = RichTextField()
+
+    image = models.ImageField(
+        '图片', upload_to=PathAndRename('snippet/'),
+        default=consts.DEFAULT_IMAGE
+    )
 
     create_time = models.DateTimeField('创建时间', auto_now_add=True)
     update_time = models.DateTimeField('更新时间', auto_now=True)

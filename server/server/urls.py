@@ -23,12 +23,13 @@ from django.conf.urls.static import static
 from django.shortcuts import render
 
 
-from snippet.views import SnippetListView
+from snippet.views import SnippetListView, SnippetDetailView
 
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('', SnippetListView.as_view())
+    path('', SnippetListView.as_view()),
+    path('snippet/<int:pk>/', SnippetDetailView.as_view()),
 ]
 
 if settings.DEBUG:
