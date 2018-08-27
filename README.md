@@ -5,7 +5,7 @@ code snippet
 
 https://codesnippet.top/
 
-![](resources/index.jpg)
+![](resources/index.png)
 
 ![](resources/screenshots.jpg)
 
