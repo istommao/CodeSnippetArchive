@@ -1,156 +1,211 @@
-<!DOCTYPE html>
+{% load static %}<!doctype html>
 <html lang="zh-Hans">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="CodeSnippet" content="CodeSnippet">
     <title>CodeSnippet</title>
-    <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/marketing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/marketing.css">
+        <!--<![endif]-->
     <style>
-    body, div {
-        margin: 0;
-        padding: 0;
-    }
-    .header {
-        left: 0;
-        top: 0;
-        z-index: 10000;
-        margin: 0;
-        padding: 0;
+        .main-list {
+            max-width: 1080px;
+            text-indent: 1em;
+            margin: 0 auto;
+        }
+        .cardBody {
+            background: white;
+            /*border: 1px solid red;*/
+
+            margin: 0 0.5em 2.5em;
+            padding: 0 0 3em;
+            height: 300px;
+            /*border-radius: 4px;*/
+            transition: .3s all linear;
+            /*box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);*/
+            position:relative;
+        }
+        .cardItem {
+            padding: 10px;
+            word-wrap:break-word;
+        }
+        .cardFooter a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+        }
+        .cardFooter {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+            background: #7A7498;
+            text-align: center;
+            color: white;
+            box-sizing: border-box;
+            border-top: 2px solid #9C98AD;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+
+    /*carCover*/
+    .cardCover {
+        position: relative;
+        /*margin: 10px;*/
         width: 100%;
-        color: white;
-        font-size: 18px;
+        height: 316px;
+        box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
+        transition: .3s all linear;
+        border-radius: 6px;
+        background: #fff;
+        float: left;
+    }
+
+    .cardCover a {
+        text-decoration: none;
+        display: block;
+        width: 100%;
+    }
+
+    .cardBox {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cardBox .box {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .boxImg {
+        width: 100%;
+        height: 96px;
+        overflow: hidden;
+    }
+
+    .boxImg img {
+        width: 100%;
+        display: block;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .boxContent {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        background: #fff;
+        padding: 22px 24px 24px;
+        box-sizing: border-box;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .boxTitle {
+        font-size: 16px;
+        line-height: 28px;
+        color: #07111b;
         font-weight: bold;
-        text-align: center;
-        height: 80px;
-        line-height: 80px;
-        border-radius: 0;
-        background-color: #272821!important;
+        letter-spacing: -0.1px;
+        max-height: 56px;
+        word-break: break-all;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: -o-ellipsis-lastline;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
-    .mainContent {
-        width: 1080px;
-        margin: 20px auto;
-        overflow: auto;
+
+    .boxDesc {
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 24px;
+        color: #93999f;
+        font-weight: 200;
+        max-height: 48px;
+        word-break: break-all;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: -o-ellipsis-lastline;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
 
-/*carCover*/
-.cardCover {
-    position: relative;
-    margin: 10px;
-    width: 250px;
-    height: 316px;
-    box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
-    transition: .3s all linear;
-    border-radius: 6px;
-    background: #fff;
-    float: left;
-}
-
-.cardCover a {
-    text-decoration: none;
-    display: block;
-}
-
-.cardBox {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.cardBox .box {
-    width: 250px;
-    overflow: hidden;
-}
-
-.boxImg {
-    width: 250px;
-    height: 96px;
-    overflow: hidden;
-}
-
-.boxImg img {
-    width: 250px;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-}
-
-.boxContent {
-    position: relative;
-    width: 250px;
-    height: 220px;
-    background: #fff;
-    padding: 22px 24px 24px;
-    box-sizing: border-box;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.boxTitle {
-    font-size: 16px;
-    line-height: 28px;
-    color: #07111b;
-    font-weight: bold;
-    letter-spacing: -0.1px;
-    max-height: 56px;
-    word-break: break-all;
-    word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: -o-ellipsis-lastline;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.boxDesc {
-    margin-top: 8px;
-    font-size: 12px;
-    line-height: 24px;
-    color: #93999f;
-    font-weight: 200;
-    max-height: 48px;
-    word-break: break-all;
-    word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: -o-ellipsis-lastline;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.boxBottom {
-    position: absolute;
-    bottom: 22px;
-    width: 228px;
-    box-sizing: border-box;
-}
+    .boxBottom {
+        position: absolute;
+        bottom: 22px;
+        width: 228px;
+        box-sizing: border-box;
+    }
     </style>
 </head>
 <body>
-    <div class="header">Code Snippet</div>
-    <div class="mainContent">
-        {% for snippet in snippets %}
-        <div class="cardCover">
-            <div class="cardBox">
-                <div class="box">
-                    <a href="#"><div class="boxImg"><img src="{{ snippet.image.url }}" alt=""></div></a>
 
-                    <a href="snippet/{{ snippet.id }}" target="_blank" rel="nofollow">
-                        <div class="boxContent">
-                            <p class="boxTitle" title="{{ snippet.title }}">{{ snippet.title }}</p>
-                            <p class="boxDesc" title="{{ snippet.intro|truncatechars:128 }}">{{ snippet.intro|truncatechars:128 }}</p>
-                            <div class="boxBottom">
-                                <div class="bottom-box clearfix">
-                                    <div class="evaluation-box l">
-                                        <div class="author-info"><span></span></div>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">CodeSnippet</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="/" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="https://github.com/istommao/CodeSnippet" class="pure-menu-link">Github</a></li>
+        </ul>
+    </div>
+</div>
+
+<div style="margin-top:5em"></div>
+
+<div class="main-list pure-g">
+
+    {% for snippet in snippets %}
+    <div class="pure-u-1 pure-u-md-1-4">
+        <div class="cardBody">
+            <div class="cardCover">
+                <div class="cardBox">
+                    <div class="box">
+                        <a href="#"><div class="boxImg"><img src="{{ snippet.image.url }}" alt=""></div></a>
+
+                        <a href="snippet/{{ snippet.id }}" target="_blank" rel="nofollow">
+                            <div class="boxContent">
+                                <p class="boxTitle" title="{{ snippet.title }}">{{ snippet.title }}</p>
+                                <p class="boxDesc" title="{{ snippet.intro|truncatechars:128 }}">{{ snippet.intro|truncatechars:128 }}</p>
+                                <div class="boxBottom">
+                                    <div class="bottom-box clearfix">
+                                        <div class="evaluation-box l">
+                                            <div class="author-info"><span></span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
-    <script src="https://codingcat.top/static/js/prism.js"></script>
-<a href="https://github.com/istommao/CodeSnippet" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    {% endfor %}
+
+</div>
+
+
 </body>
 </html>

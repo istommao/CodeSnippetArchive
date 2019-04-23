@@ -1,49 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hans">
 <head>
-    <meta charset="UTF-8">
-    <title>CodeSnippet</title>
-    <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ snippet.title }}">
+    <title>{{ snippet.title }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/marketing-old-ie.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/layouts/marketing.css">
+        <!--<![endif]-->
+            <link rel="stylesheet" href="https://codingcat.top/static/css/prism.css">
     <style>
-    .mainContent {
-        width: 980px;
-        margin: 20px auto;
-    }
-    .cardItem {
-        width: 100%;
-        margin-top: 15px;
-        font-size:16px;
-        overflow: hidden;
-        background: white;
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-        border-radius: 0.3em;
-    }
-    .cardTitle {
-        border-bottom: 2px solid #F7F7F7;
-        text-indent: 20px;
-        height: 50px;
-        line-height: 50px;
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .cardContent {
-        padding: 10px 15px;
-    }
-    .cardItem pre {
-        height: auto;
-        font-size: 14px;
-    }
+        body {background: #F2F2F2;}
+        .main-list {
+            max-width: 1080px;
+            text-indent: 1em;
+            margin: 0 auto;
+        }
+        .cardBody {
+            background: white;
+            border: 1px solid #eee;
+            margin: 0 0.5em 2em;
+            padding: 0 0 3em;
+            /*min-height: 45em;*/
+            border-radius: 4px;
+            transition: .3s all linear;
+            /*box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);*/
+            position:relative;
+        }
+        .cardItem {
+            padding: 10px;
+            word-wrap:break-word;
+        }
+        .cardFooter a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+        }
+        .cardFooter {
+            /*position: relative;*/
+            /*bottom: 0;*/
+            left: 0;
+            margin-top: 10px;
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+            background: #7A7498;
+            text-align: center;
+            color: white;
+            box-sizing: border-box;
+            border-top: 2px solid #9C98AD;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
     </style>
 </head>
 <body>
-    <div class="mainContent">
-        <div class="cardItem">
-            <div class="cardTitle">{{ snippet.title }}</div>
-            <div class="cardContent">
+
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">CodeSnippet</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="/" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="https://github.com/istommao/CodeSnippet" class="pure-menu-link">Github</a></li>
+        </ul>
+    </div>
+</div>
+
+<div style="margin-top:5em"></div>
+
+<div class="main-list pure-g">
+
+    <div class="pure-u-1 pure-u-md-1-1">
+        <div class="cardBody">
+            <div class="cardItem">
+                <h2>{{ snippet.title }}</h2>
                 {{ snippet.content|safe }}
             </div>
         </div>
     </div>
+
+</div>
+
     <script src="https://codingcat.top/static/js/prism.js"></script>
+
 </body>
 </html>
