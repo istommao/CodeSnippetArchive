@@ -14,6 +14,7 @@ class Snippet(models.Model):
     title = models.CharField('标题', max_length=32)
     intro = models.CharField('简介', max_length=256, default='')
     content = RichTextField()
+    tags = models.CharField('标签', max_length=64)
 
     image = models.ImageField(
         '图片', upload_to=PathAndRename('snippet/'),
@@ -29,3 +30,7 @@ class Snippet(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def tag_list(self):
+        return self.tags.split(',')

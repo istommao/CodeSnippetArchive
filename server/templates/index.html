@@ -63,7 +63,6 @@
             border-bottom-left-radius: 4px;
         }
 
-
     /*carCover*/
     .cardCover {
         position: relative;
@@ -156,6 +155,19 @@
         width: 228px;
         box-sizing: border-box;
     }
+
+        .cardTag {
+            /*display: inline-block;*/
+            position: relative;
+            padding: 0 6px;
+            color: white;
+            font-size: 12px;
+            border-radius: 2px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            background: #1E9FFF!important;
+        }
     </style>
 </head>
 <body>
@@ -191,7 +203,12 @@
                                 <div class="boxBottom">
                                     <div class="bottom-box clearfix">
                                         <div class="evaluation-box l">
-                                            <div class="author-info"><span></span></div>
+                                            <div class="author-info">
+                                                {% for tag in snippet.tag_list %}
+                                                <span class="cardTag">{{ tag }}</span>
+                                                {% endfor %}
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

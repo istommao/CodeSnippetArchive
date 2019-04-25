@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
 
     'simditor',
     'snippet'
@@ -153,6 +154,9 @@ SIMDITOR_CONFIGS = {
         'imagePath': '/static/simditor/images/emoji/'
     }
 }
+
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+
 
 try:
     from .local_settings import *

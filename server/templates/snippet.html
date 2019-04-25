@@ -64,6 +64,19 @@
             border-bottom-right-radius: 4px;
             border-bottom-left-radius: 4px;
         }
+        .cardTag {
+            display: inline-block;
+            width: auto;
+            position: relative;
+            padding: 0 6px;
+            color: white;
+            font-size: 12px;
+            border-radius: 2px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            background: #1E9FFF!important;
+        }
     </style>
 </head>
 <body>
@@ -88,6 +101,9 @@
         <div class="cardBody">
             <div class="cardItem">
                 <h2>{{ snippet.title }}</h2>
+                {% for tag in snippet.tag_list %}
+                <span class="cardTag">{{ tag }}</span>
+                {% endfor %}
                 {{ snippet.content|safe }}
             </div>
         </div>
