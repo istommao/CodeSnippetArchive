@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}CodeSnippet{% endblock %}
+{% block extendStyle %}
+<link href="/static/css/prism.css" rel="stylesheet" />
+<style>
+.copy-to-clipboard-button {
+    cursor: pointer;
+}
+.htmlpreview {
+    display: block;
+    width: 100%;
+}
+.htmlpreview > .boxItem{
+    width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+textarea {
+    resize: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+#PreviewBox {
+    width: 100%;
+    /*min-height: 450px;*/
+    overflow: auto;
+}
+</style>
+{% endblock extendStyle %}
+
+{% block container %}
+<div class="main">
+   <div class="htmlpreview">
+       <div class="boxItem" id="PreviewBox"></div>
+   </div>
+</div>
+{% endblock %}
+
+{% block extendScript %}
+<script src="/static/js/prism.js"></script>
+<script type="text/javascript" src="/static/js/sql-formatter.min.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+var PreviewBox = document.getElementById('PreviewBox');
+
+(function() {
+    var PrismPreview = function(data) {
+        return marked(data);
+    }
+
+    var doFormatPrismPreview = function(data) {
+        var result = '```python\n' + data + '```';
+        return PrismPreview(result);
+    }
+
+    const InputDataValue = 'def function():\n\tprint("asdfasfd")\n';
+
+    PreviewBox.innerHTML = doFormatPrismPreview(InputDataValue);
+    Prism.highlightAll();
+})();
+</script>
+{% endblock extendScript %}

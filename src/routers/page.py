@@ -17,12 +17,18 @@ async def index_page(request: Request):
     return templates.TemplateResponse('home.html', {'request': request})
 
 
-@router.get('/tb/{tool_name}/')
+@router.get('/')
+async def index_page(request: Request):
+    return templates.TemplateResponse('home.html', {'request': request})
+
+
+@router.get('/snippet/{tool_name}/')
 async def tb_page(request: Request, tool_name: str):
-    tpl_name = 'codesnippet/{}.html'.format(tool_name)
+    print(tool_name)
+    tpl_name = 'snippet/detail.html'
     try:
         resp = templates.TemplateResponse(tpl_name, {'request': request})
     except jinja2.exceptions.TemplateNotFound:
-        return templates.TemplateResponse('toolbox/index.html', {'request': request})
+        return templates.TemplateResponse('home.html', {'request': request})
     else:
         return resp
