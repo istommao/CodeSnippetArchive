@@ -50,10 +50,17 @@ var PreviewBox = document.getElementById('PreviewBox');
     var PrismPreview = function(data) {
         return marked(data);
     }
+    var getSnippetName = function() {
+        const URLPATH = location.href;
+        parts = URLPATH.split('/');
 
+        snippetName = parts.pop() || parts.pop();
+        return snippetName;
+    }
     var doFormatPrismPreview = async function(data) {
+        const url = '/static/media/' + getSnippetName() + '.md';
         Promise.all([
-          fetch('/static/media/title.md').then(x => x.text()),
+          fetch(url).then(x => x.text()),
         ]).then(([result]) => {
             PreviewBox.innerHTML = marked(result);
             Prism.highlightAll();

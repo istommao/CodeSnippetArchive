@@ -1,19 +1,55 @@
-{% extends "base.html" %} {% block title %}CodeSnippet{% endblock %} {% block
-container %}
+{% extends "base.html" %} {% block title %}CodeSnippet{% endblock %}
+
+{% block container %}
 <h1>CodeSnippet</h1>
 <p class="description">共收录 8 个分类， 119 个代码片段</p>
 <div class="sectors">
   <div class="sector">
-    <h2>热门</h2>
-    <div class="links">
-      <a href="/snippet/datetime/" class="link"
+    <h2>Snippets</h2>
+    <div class="links" id="SnippetBlock">
+      <!-- <a href="/snippet/datetime/" class="link"
         ><img src="/static/imgs/datetime.png" alt="" />
         <div class="info">
           <h3>日期与时间</h3>
           <p>日期时间处理</p>
         </div>
-      </a>
+      </a> -->
     </div>
   </div>
-  {% endblock %}
 </div>
+{% endblock %}
+
+{% block extendScript %}
+<script>
+
+(function() {
+    var doRequest = async function(callback) {
+      const url = '/api/snippets/';
+      Promise.all([
+        fetch(url).then(x => x.text()),
+      ]).then(([text]) => {
+        const result = JSON.parse(text);
+        const snippets = result.snippets;
+        callback(snippets);
+      });
+    }
+
+    var doRenderResult = function(snippets) {
+      var datalist = [];
+
+      var innerHTML = ''
+
+      for (i = 0; i < snippets.length; i++) { 
+        var item = snippets[i];
+          innerHTML += '<a href="' + item + '" class="link"><img src="/static/imgs/datetime.png" alt="" /><div class="info">' +
+           '<h3>' + item.split('/')[2] + '</h3><p>' + item.split('/')[2] + '</p></div></a>';
+      }
+
+      document.getElementById('SnippetBlock').innerHTML = innerHTML;
+    }
+
+    doRequest(doRenderResult);
+
+})();
+</script>
+{% endblock extendScript %}

@@ -38,9 +38,27 @@
     height: 30px;
 }
 .LeftBlock {
-    max-width: 300px;
+    max-width: 400px;
     display: inline-block;
 }
+
+.languageOptions {
+    display: inline-block;
+    width: 150px;
+}
+
+.titleBlock {
+    display: inline-block;
+    height: 30px;
+}
+.titleBlock input {
+    height: 28px;
+    line-height: 28px;
+    text-indent: 10px;
+    border: 1px solid #3c5269;
+    border-radius: 3px;
+}
+
 .XT-Select {
     width: 150px;
     height: 30px;
@@ -82,12 +100,15 @@
         <div class="boxItem" id="container"></div>
         <div class="BoxFooter">
             <div class="LeftBlock">
-                <div class="language-options">
+                <div class="languageOptions">
                     <select id="languageOptions" class="XT-Select">
                         <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
                         <option value="sql">SQL</option>
                     </select>
+                </div>
+                <div class="titleBlock">
+                    <input type="text" id="titleInput" value="" placeholder="标题">
                 </div>
             </div>
             <div class="RightBlock">
@@ -130,8 +151,9 @@
         SaveBtn.onclick = async function(event) {
             const content = getMarkdownContent();
 
+            var titleInput = document.getElementById('titleInput');
             const payload = {
-                "title": "title",
+                "title": titleInput.value,
                 "language": getSelectedLanguage(),
                 "content": content
             }
