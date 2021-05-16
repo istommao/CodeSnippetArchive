@@ -33,7 +33,8 @@ textarea {
 {% block container %}
 <div class="main">
    <div class="htmlpreview">
-       <div class="boxItem" id="PreviewBox"></div>
+        <div style="display: hidden"></div>
+        <div class="boxItem" id="PreviewBox"></div>
    </div>
 </div>
 {% endblock %}
@@ -50,15 +51,16 @@ var PreviewBox = document.getElementById('PreviewBox');
         return marked(data);
     }
 
-    var doFormatPrismPreview = function(data) {
-        var result = '```python\n' + data + '```';
-        return PrismPreview(result);
+    var doFormatPrismPreview = async function(data) {
+        Promise.all([
+          fetch('/static/media/title.md').then(x => x.text()),
+        ]).then(([result]) => {
+            PreviewBox.innerHTML = marked(result);
+            Prism.highlightAll();
+        });
     }
+    doFormatPrismPreview();
 
-    const InputDataValue = 'def function():\n\tprint("asdfasfd")\n';
-
-    PreviewBox.innerHTML = doFormatPrismPreview(InputDataValue);
-    Prism.highlightAll();
 })();
 </script>
 {% endblock extendScript %}

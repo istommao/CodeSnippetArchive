@@ -17,9 +17,9 @@ async def index_page(request: Request):
     return templates.TemplateResponse('home.html', {'request': request})
 
 
-@router.get('/')
-async def index_page(request: Request):
-    return templates.TemplateResponse('home.html', {'request': request})
+@router.get('/editor')
+async def editor_page(request: Request):
+    return templates.TemplateResponse('editor.html', {'request': request})
 
 
 @router.get('/snippet/{tool_name}/')

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% block title %}CodeSnippet Editor{% endblock %}
+{% block extendStyle %}
+<link
+    rel="stylesheet"
+    data-name="vs/editor/editor.main"
+    href="/static/monaco-editor/min/vs/editor/editor.main.css"
+/>
+<style>
+.main {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(180, 195, 255, .3);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    border-radius: 2px;
+}
+
+.copy-to-clipboard-button {
+    cursor: pointer;
+}
+.htmlpreview {
+    display: block;
+    width: 100%;
+}
+.htmlpreview > .boxItem{
+    width: 100%;
+    margin: 0;
+    min-height: 500px;
+    text-align: left;
+    font-size: 18px;
+}
+.BoxFooter {
+    margin: 15px 0;
+    padding: 0 15px 15px 15px;
+    line-height: 30px;
+    height: 30px;
+}
+.LeftBlock {
+    max-width: 300px;
+    display: inline-block;
+}
+.XT-Select {
+    width: 150px;
+    height: 30px;
+    border: 1px solid #3c5269;
+    border-radius: 3px;
+}
+
+.RightBlock {
+    max-width: 300px;
+    display: inline-block;
+    float: right;
+}
+
+.XT-Button-Wrap {
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    margin-left: 20px;
+}
+.XT-Button {
+    cursor: pointer;
+    background: #21A0FF;
+    width: 80px;
+    height: 30px;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.XT-Button:hover {
+    background: #59B3FF;
+}
+</style>
+{% endblock extendStyle %}
+
+{% block container %}
+<div class="main">
+   <div class="htmlpreview">
+        <div class="boxItem" id="container"></div>
+        <div class="BoxFooter">
+            <div class="LeftBlock">
+                <div class="language-options">
+                    <select id="languageOptions" class="XT-Select">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="sql">SQL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="RightBlock">
+                <div class="XT-Button-Wrap"><button class="XT-Button">New</button></div>
+                <div class="XT-Button-Wrap"><button class="XT-Button" id="SaveBtn">Save</button></div>
+            </div>
+        </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block extendScript %}
+<script>
+    var require = { paths: { vs: '/static/monaco-editor/min/vs' } };
+</script>
+<script src="/static/monaco-editor/min/vs/loader.js"></script>
+<script src="/static/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+<script src="/static/monaco-editor/min/vs/editor/editor.main.js"></script>
+
+<script>
+    var mainBox = document.getElementById('container');
+    var languageOptions = document.getElementById('languageOptions');
+    var SaveBtn = document.getElementById('SaveBtn');
+
+    const configOptions = {
+        value: [].join('\n'),
+        language: 'python',
+        theme: "vs-dark",
+        fontSize: "18px",
+    };
+    var editorObject = monaco.editor.create(mainBox, configOptions);
+
+    (function() {
+        languageOptions.onchange = function(event) {
+            const language = getSelectedLanguage();
+            monaco.editor.setModelLanguage(editorObject.getModel(), language);
+        }
+
+
+        SaveBtn.onclick = async function(event) {
+            const content = getMarkdownContent();
+
+            const payload = {
+                "title": "title",
+                "language": getSelectedLanguage(),
+                "content": content
+            }
+            const response = await doPostRequest('/api/snippet/', payload);
+            const result = JSON.parse(response);
+            if (result.success) {
+                Toast('Success', 1200);
+            } else {
+                Toast('Failure', 1200);
+            }
+        }
+
+    })();
+
+    var getMarkdownContent = function() {
+        const language = getSelectedLanguage();
+        const editorContent = editorObject.getValue();
+        const result = "```" + language + '\n' + editorContent + '\n' + '```';
+        return result;
+    }
+
+    var getSelectedLanguage = function() {
+        const language = languageOptions.options[languageOptions.selectedIndex].value;
+        return language;
+    }
+
+    var ajaxRequest = function(method, url, data) {
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.setRequestHeader("content-type", "application/json");
+
+            xhr.onload = function() {
+              if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+              } else {
+                reject({
+                  status: this.status,
+                  statusText: xhr.statusText
+                });
+              }
+            };
+            xhr.onerror = function() {
+              reject({
+                status: this.status,
+                statusText: xhr.statusText
+              });
+            };
+            xhr.send(JSON.stringify(data));
+        });
+    }
+
+    var doPostRequest = function(url, data) {
+        return ajaxRequest('POST', url, data);
+    }
+
+      function Toast(msg, duration) {
+        duration = isNaN(duration) ? 3000 : duration;
+        var m = document.createElement("div");
+        m.innerHTML = msg;
+        m.style.cssText =
+          "max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+        document.body.appendChild(m);
+        setTimeout(function () {
+          var d = 0.5;
+          m.style.webkitTransition =
+            "-webkit-transform " + d + "s ease-in, opacity " + d + "s ease-in";
+          m.style.opacity = "0";
+          setTimeout(function () {
+            document.body.removeChild(m);
+          }, d * 1000);
+        }, duration);
+      }
+</script>
+{% endblock extendScript %}
