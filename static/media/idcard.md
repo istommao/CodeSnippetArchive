@@ -1,19 +1,3 @@
-# CodeSnippet
-code snippet
-
-## website
-
-https://codesnippet.top/
-
-![](resources/snippet.editor.png)
-
-- captcha
-- idcard
-- qrcode
-
-
-## idcard
-
 ```python
 import re
 
@@ -36,19 +20,5 @@ def is_valid_idcard(idcard):
     ckcodes = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
 
     return ckcodes[copulas % 11].upper() == idcard[-1].upper()
+
 ```
-
-
-## qrcode
-```shell
-pip install qrcode
-pip install pillow
-```
-
-```python
-import qrcode
-img = qrcode.make('https://github.com/istommao/CodeSnippet')
-img.show()
-```
-
-> [more about qrcode](https://github.com/lincolnloop/python-qrcode)
