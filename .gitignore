@@ -104,8 +104,7 @@ ENV/
 db.sqlite3
 local_settings.py
 
-server/static
-server/media
+/static/media/*
 
 !.gitkeep
 !default.png
