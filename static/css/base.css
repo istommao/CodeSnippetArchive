@@ -11,6 +11,10 @@
     background: #fbfbfb;
 }
 
+pre[class*="language-"] {
+    margin: 0 !important;
+}
+
 * {
     padding: 0;
     margin: 0;
