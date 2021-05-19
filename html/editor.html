@@ -105,6 +105,8 @@
                         <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
                         <option value="sql">SQL</option>
+                        <option value="rust">Rust</option>
+                        <option value="go">Golang</option>
                     </select>
                 </div>
                 <div class="titleBlock">
@@ -112,7 +114,7 @@
                 </div>
             </div>
             <div class="RightBlock">
-                <div class="XT-Button-Wrap"><button class="XT-Button">New</button></div>
+                <div class="XT-Button-Wrap"><button class="XT-Button" id="NewBtn">New</button></div>
                 <div class="XT-Button-Wrap"><button class="XT-Button" id="SaveBtn">Save</button></div>
             </div>
         </div>
@@ -132,6 +134,8 @@
     var mainBox = document.getElementById('container');
     var languageOptions = document.getElementById('languageOptions');
     var SaveBtn = document.getElementById('SaveBtn');
+    var NewBtn = document.getElementById('NewBtn');
+    var titleInput = document.getElementById('titleInput');
 
     const configOptions = {
         value: [].join('\n'),
@@ -147,11 +151,13 @@
             monaco.editor.setModelLanguage(editorObject.getModel(), language);
         }
 
+        NewBtn.onclick = async function(event) {
+            titleInput.value = '';
+            editorObject.setValue('');
+        }
 
         SaveBtn.onclick = async function(event) {
             const content = getMarkdownContent();
-
-            var titleInput = document.getElementById('titleInput');
             const payload = {
                 "title": titleInput.value,
                 "language": getSelectedLanguage(),
