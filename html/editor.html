@@ -105,12 +105,20 @@
                         <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
                         <option value="rust">Rust</option>
+                        <option value="c">C</option>
+                        <option value="cpp">CPP</option>
                         <option value="go">Golang</option>
                         <option value="typescript">TypeScript</option>
                         <option value="lua">Lua</option>
                         <option value="yaml">YAML</option>
                         <option value="sql">SQL</option>
+                        <option value="shell">Shell</option>
+                        <option value="dockerfile">Dockerfile</option>
+                        <option value="html">Html</option>
+                        <option value="css">css</option>
+                        <!-- <option value="json">JSON</option> -->
                         <option value="markdown">Markdown</option>
+                        <option value="xml">XML</option>
                     </select>
                 </div>
                 <div class="titleBlock">
@@ -181,7 +189,12 @@
     var getMarkdownContent = function() {
         const language = getSelectedLanguage();
         const editorContent = editorObject.getValue();
-        const result = "```" + language + '\n' + editorContent + '\n' + '```';
+        let result = '';
+        if (language === 'markdown') {
+            result = editorContent;
+        } else {
+            result = "```" + language + '\n' + editorContent + '\n' + '```';
+        }
         return result;
     }
 

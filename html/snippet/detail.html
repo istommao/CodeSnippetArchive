@@ -7,8 +7,14 @@
     width: 100%;
     padding: 0;
     margin: 0;
-    background: #FBFBFB;
-    box-shadow: none;
+    /*background: #FBFBFB;*/
+    /*box-shadow: none;*/
+
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(180, 195, 255, .3);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
 }
 .copy-to-clipboard-button {
     cursor: pointer;
@@ -33,6 +39,7 @@ textarea {
     width: 100%;
     /*min-height: 450px;*/
     overflow: auto;
+
 }
 </style>
 {% endblock extendStyle %}
@@ -69,7 +76,9 @@ var PreviewBox = document.getElementById('PreviewBox');
         Promise.all([
           fetch(url).then(x => x.text()),
         ]).then(([result]) => {
-            PreviewBox.innerHTML = marked(result);
+            const markedContent = marked(result);
+            console.log(markedContent);
+            PreviewBox.innerHTML = markedContent;
             Prism.highlightAll();
         });
     }
