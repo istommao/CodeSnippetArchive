@@ -1,6 +1,14 @@
 # CodeSnippet
 code snippet
 
+## feature
+
+- [ ] login
+- [ ] Editor and update page
+- [ ] detail page
+- [ ] category tags
+- [ ] http api 接口
+
 ## website
 
 https://codesnippet.top/
